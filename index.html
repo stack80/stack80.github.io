@@ -115,7 +115,7 @@
       padding: .75rem 1rem;
       border-radius: 999px;
       background: linear-gradient(180deg, var(--brand), #e5a700);
-      color: #171717;
+	  color: #ffffff !important;
       font-weight: 900;
       letter-spacing: .2px;
       border: 0;
@@ -381,6 +381,17 @@
       }
       .footerGrid{ grid-template-columns: 1fr; }
     }
+	
+	#onde, #sobre, #planos, #contato {
+	  scroll-margin-top: 140px;
+	}
+
+	@media (max-width: 520px){
+	  #onde, #sobre, #planos, #contato {
+		scroll-margin-top: 200px;
+		}
+	}
+
   </style>
 </head>
 
