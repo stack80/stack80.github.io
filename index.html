@@ -261,7 +261,22 @@
       color: var(--brand-2);
       font-weight: 800;
       font-size: .88rem;
-    }
+	  display: inline-flex;
+	  align-items: center;
+	  justify-content: center;
+	  cursor: pointer;
+	  text-decoration: none;
+	  transition: .2s ease;
+	}
+	
+	.pill:hover{
+	  filter: brightness(1.08);
+	  transform: translateY(-1px);
+	}
+	
+	.pill:active{
+	  transform: translateY(0);
+	}
 
     /* Sections */
     section{
@@ -447,9 +462,15 @@
             <h3>Onde pedir</h3>
             <p>Você encontra a Stack 80 nos principais apps de delivery:</p>
             <div class="pillRow" aria-label="Plataformas de delivery">
-              <span class="pill">iFood</span>
-              <span class="pill">99 Food</span>
-              <span class="pill">WhatsApp</span>
+			  <a class="pill" href="COLE_AQUI_O_LINK_DO_IFOOD" target="_blank" rel="noopener">
+				iFood
+			  </a>
+			  <a class="pill" href="COLE_AQUI_O_LINK_DO_99FOOD" target="_blank" rel="noopener">
+				99 Food
+			  </a>
+			  <a class="pill" href="https://api.whatsapp.com/send/?phone=5511982848417&text=Ol%C3%A1%21%0AQuero+ver+o+card%C3%A1pio+da+Stack+80%21&type=phone_number&app_absent=0" target="_blank" rel="noopener">
+				WhatsApp
+			  </a>
             </div>
             <p class="fine">*Disponibilidade pode variar por região e horário.</p>
           </div>
