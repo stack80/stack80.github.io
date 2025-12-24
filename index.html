@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0b" />
+
+  <title>Stack 80 — 80g. Uma prensa. Muito sabor.</title>
+  <meta name="description" content="Stack 80 — hamburgueria artesanal (dark kitchen). Desde 2026. No iFood e 99 Food. Várzea Paulista e, em breve, Jundiaí e região." />
+
+  <!-- Favicon (use seu ícone - imagem 2) -->
+  <link rel="icon" href="./Icone-Stack80-p.png" type="image/png" />
+  
+  <!-- Google Font: Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Paleta (baseada no seu logo): preto + branco + amarelo */
+      --bg: #0b0b0b;
+      --bg-2: #111111;
+      --card: #151515;
+      --text: #f4f4f4;
+      --muted: #bdbdbd;
+      --brand: #f2b300; /* amarelo/dourado */
+      --brand-2:#ffd56a;
+
+      --radius: 18px;
+      --shadow: 0 12px 35px rgba(0,0,0,.35);
+      --max: 1100px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin: 0;
+	  font-family: 'Montserrat', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 18% 8%, rgba(242,179,0,.14), transparent 55%),
+        radial-gradient(800px 520px at 85% 30%, rgba(255,213,106,.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), #070707);
+      line-height: 1.55;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; display: block; }
+
+    .container{
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,11,.62);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: .9rem 0;
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      min-width: 220px;
+    }
+
+    .brand img{
+      width: 150px;
+      height: auto;
+    }
+
+    .navlinks{
+      display: flex;
+      align-items: center;
+      gap: .85rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .navlinks a{
+      padding: .55rem .75rem;
+      border-radius: 999px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: .2s ease;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .navlinks a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+
+    .cta{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      padding: .75rem 1rem;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--brand), #e5a700);
+      color: #171717;
+      font-weight: 900;
+      letter-spacing: .2px;
+      border: 0;
+      box-shadow: 0 12px 28px rgba(242,179,0,.18);
+      transition: transform .12s ease, filter .2s ease;
+      white-space: nowrap;
+    }
+    .cta:hover{ filter: brightness(1.05); transform: translateY(-1px); }
+    .cta:active{ transform: translateY(0); }
+
+    /* Hero */
+    .hero{
+      padding: 3.2rem 0 2rem;
+    }
+
+    .heroGrid{
+      display: grid;
+      grid-template-columns: 1.3fr .9fr;
+      gap: 1.25rem;
+      align-items: stretch;
+    }
+
+    .heroCard{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .kicker{
+      display: inline-flex;
+      gap: .5rem;
+      align-items: center;
+      color: var(--brand-2);
+      font-weight: 800;
+      letter-spacing: .3px;
+      text-transform: uppercase;
+      font-size: .82rem;
+    }
+
+    .title{
+      margin: .6rem 0 .5rem;
+      font-size: clamp(1.75rem, 2.4vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: -.4px;
+    }
+
+    .subtitle{
+      margin: 0 0 1.2rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 60ch;
+    }
+
+    .heroActions{
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .ghost{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .55rem;
+      padding: .72rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 800;
+      transition: .2s ease;
+      white-space: nowrap;
+    }
+    .ghost:hover{
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.20);
+    }
+
+    .badges{
+      margin-top: 1.1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+
+    .badge{
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .45rem .7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      color: #ddd;
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .badge b{ color: var(--brand-2); }
+
+    /* Side card */
+    .side{
+      display: grid;
+      gap: 1rem;
+    }
+
+    .mini{
+      background: linear-gradient(180deg, rgba(21,21,21,.9), rgba(10,10,10,.8));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .mini h3{
+      margin: 0 0 .4rem;
+      font-size: 1.1rem;
+      letter-spacing: -.2px;
+    }
+
+    .mini p{
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pillRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin-top: .85rem;
+    }
+
+    .pill{
+      padding: .4rem .65rem;
+      border-radius: 999px;
+      background: rgba(242,179,0,.12);
+      border: 1px solid rgba(242,179,0,.22);
+      color: var(--brand-2);
+      font-weight: 800;
+      font-size: .88rem;
+    }
+
+    /* Sections */
+    section{
+      padding: 2.2rem 0;
+    }
+
+    .sectionTitle{
+      margin: 0 0 .7rem;
+      font-size: 1.35rem;
+      letter-spacing: -.2px;
+    }
+
+    .sectionLead{
+      margin: 0 0 1.2rem;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .cards{
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card{
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      padding: 1.1rem;
+    }
+
+    .card h4{
+      margin: 0 0 .4rem;
+      font-size: 1.05rem;
+    }
+
+    .card p{
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* Socials */
+    .socialRow{
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .socialBtn{
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      padding: .7rem .9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight: 900;
+      transition: .2s ease;
+    }
+    .socialBtn:hover{
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .icon{
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+    }
+
+    /* Footer */
+    footer{
+      padding: 2rem 0 2.4rem;
+      border-top: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.25);
+      margin-top: 1.5rem;
+    }
+
+    .footerGrid{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .fine{
+      color: rgba(255,255,255,.55);
+      font-size: .92rem;
+      margin: .5rem 0 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 920px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .brand{ min-width: auto; }
+      .navlinks{ justify-content: center; }
+    }
+
+    @media (max-width: 840px){
+      .cards{ grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px){
+      .brand img{ width: 132px; }
+      .nav{
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .navlinks{
+        justify-content: center;
+      }
+      .cta, .ghost, .socialBtn{
+        width: 100%;
+        justify-content: center;
+      }
+      .footerGrid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Ir para o início">
+        <!-- Logo (imagem 1) -->
+        <img src="./Logo-Stack80.png" alt="Logo Stack 80" />
+      </a>
+
+      <nav class="navlinks" aria-label="Navegação do site">
+        <a href="#sobre">Sobre</a>
+        <a href="#onde">Onde pedir</a>
+        <a href="#planos">Planos</a>
+        <a href="#contato">Redes</a>
+        <!-- Botão cardápio (link) -->
+        <a class="cta" href="COLE_AQUI_O_LINK_DO_CARDAPIO" target="_blank" rel="noopener">
+          Consultar cardápio
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container heroGrid">
+        <div class="heroCard">
+          <div class="kicker">Hamburgueria desde 2026</div>
+          <h1 class="title">80g. Uma prensa. Muito sabor.</h1>
+          <p class="subtitle">
+            A Stack 80 é uma <strong>hamburgueria artesanal</strong> feita para entregar um lanche consistente, bem montado e com aquela
+            pegada de “quero repetir”. Operamos como <strong>dark kitchen</strong> e estamos construindo nossa marca com foco em qualidade.
+          </p>
+
+          <div class="heroActions">
+            <a class="cta" href="COLE_AQUI_O_LINK_DO_CARDAPIO" target="_blank" rel="noopener">
+              Consultar cardápio
+            </a>
+            <a class="ghost" href="#onde">Ver onde pedir</a>
+            <a class="ghost" href="#contato">Nossas redes</a>
+          </div>
+
+          <div class="badges" aria-label="Destaques">
+            <span class="badge">🍔 <b>Artesanal</b> na medida</span>
+            <span class="badge">⚡ Foco em <b>agilidade</b></span>
+            <span class="badge">⭐ Qualidade no <b>que chega</b></span>
+          </div>
+        </div>
+
+        <div class="side">
+          <div class="mini" id="onde">
+            <h3>Onde pedir</h3>
+            <p>Você encontra a Stack 80 nos principais apps de delivery:</p>
+            <div class="pillRow" aria-label="Plataformas de delivery">
+              <span class="pill">iFood</span>
+              <span class="pill">99 Food</span>
+              <span class="pill">WhatsApp</span>
+            </div>
+            <p class="fine">*Disponibilidade pode variar por região e horário.</p>
+          </div>
+
+          <div class="mini">
+            <h3>Modelo de operação</h3>
+            <p>
+              Somos uma <strong>dark kitchen</strong> em fase inicial — mas com um objetivo claro:
+              abrir uma loja em <strong>Várzea Paulista</strong> e expandir para <strong>Jundiaí e região</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="container">
+        <h2 class="sectionTitle">Sobre a Stack 80</h2>
+        <p class="sectionLead">
+          A hamburgueria nasceu do sonho de ter uma hamburgueria artesanal e ser reconhecida pela
+          <strong>qualidade do produto entregue</strong> — do primeiro ao último detalhe.
+        </p>
+
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <h4>O que a gente acredita</h4>
+            <p>Qualidade e padrão: cada pedido precisa chegar “do jeito certo”.</p>
+          </article>
+
+          <article class="card" role="listitem">
+            <h4>Como a gente opera</h4>
+            <p>Dark kitchen com foco em organização, velocidade e experiência do cliente.</p>
+          </article>
+
+          <article class="card" role="listitem">
+            <h4>Quem está por trás</h4>
+            <p>Os sócios são <strong>Caio Alvarenga</strong> e <strong>Vinicius Pinheiro</strong>.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="planos">
+      <div class="container">
+        <h2 class="sectionTitle">Visão e expansão</h2>
+        <p class="sectionLead">
+          Estamos começando agora, mas com rota definida: consolidar o delivery e, em seguida,
+          dar o próximo passo com uma loja física.
+        </p>
+
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <h4>Fase 1: Delivery forte</h4>
+            <p>Padronização, atendimento e reputação no delivery (iFood/99 Food).</p>
+          </article>
+
+          <article class="card" role="listitem">
+            <h4>Fase 2: Loja em Várzea Paulista</h4>
+            <p>Um espaço físico para ampliar a experiência e fortalecer a marca.</p>
+          </article>
+
+          <article class="card" role="listitem">
+            <h4>Fase 3: Jundiaí e região</h4>
+            <p>Expansão com consistência, mantendo o mesmo padrão de qualidade.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato">
+      <div class="container">
+        <h2 class="sectionTitle">Siga a Stack 80</h2>
+        <p class="sectionLead">
+          Acompanhe novidades, bastidores e lançamentos. Clique e vá direto para as redes:
+        </p>
+
+        <div class="socialRow" aria-label="Redes sociais">
+          <!-- Troque os href pelos links oficiais -->
+          <a class="socialBtn" href="COLE_AQUI_O_LINK_DO_INSTAGRAM" target="_blank" rel="noopener" aria-label="Abrir Instagram">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M17.5 6.7h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            Instagram
+          </a>
+
+          <a class="socialBtn" href="COLE_AQUI_O_LINK_DO_FACEBOOK" target="_blank" rel="noopener" aria-label="Abrir Facebook">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 8h3V5h-3c-2.2 0-4 1.8-4 4v3H7v3h3v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/>
+            </svg>
+            Facebook
+          </a>
+
+          <a class="socialBtn" href="COLE_AQUI_O_LINK_DO_LINKTREE" target="_blank" rel="noopener" aria-label="Abrir Linktr.ee">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 2l4.5 6H14l2.5 3H13v4.5l3.5 3.5H13l-1 2-1-2H7.5l3.5-3.5V11H7.5L10 8H7.5L12 2Z" fill="currentColor"/>
+            </svg>
+            Linktr.ee
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footerGrid">
+      <div>
+        <strong>Stack 80</strong>
+        <p class="fine">80g. Uma prensa. Muito sabor.</p>
+        <p class="fine">© <span id="year">2026</span> Stack 80 — Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sem JS necessário. Se quiser ano automático, pode ativar este script:
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  -->
+</body>
+</html>
